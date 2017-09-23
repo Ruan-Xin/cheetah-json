@@ -6,11 +6,8 @@ import (
 )
 
 func TestParse(t *testing.T) {
-	root := node{
-		leaf: false,
+	root := root{
 		name:"root",
-		dataType:"object",
-		kv:nil,
 	}
 
 	fmt.Println(root.child)

@@ -22,7 +22,7 @@ var (
 
 type root struct {
 	name string
-	child node
+	child[] node
 }
 
 type node struct {
@@ -35,14 +35,9 @@ type node struct {
 
 var pos = 0
 func Parse(input string)  {
-	root := node{
-		leaf: false,
+	root := root {
 		name:"root",
-		dataType:"object",
-		kv:nil,
 	}
-
-
 
 	for input[pos] != '}' {
 		if input[pos] == '{' {
