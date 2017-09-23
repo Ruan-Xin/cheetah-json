@@ -11,4 +11,7 @@ func TestParse(t *testing.T) {
 	}
 
 	fmt.Println(root.child)
+
+	a := ""
+	a = a + "1"
 }

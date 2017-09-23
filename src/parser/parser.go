@@ -2,6 +2,7 @@ package parser
 
 import (
 	"errors"
+	"bytes"
 )
 
 /**
@@ -31,6 +32,7 @@ type node struct {
 	root bool
 	dataType string
 	child[] node
+	key string
 }
 
 var pos = 0
@@ -38,10 +40,14 @@ func Parse(input string)  {
 	root := root {
 		name:"root",
 	}
-
+	var buffer bytes.Buffer
+	var key string
 	for input[pos] != '}' {
-		if input[pos] == '{' {
-			pos++
+		pos++
+		if input[pos] == '"' {
+			buffer.WriteByte(input[pos])
+			for input[pos] != '"' {
+			}
 		}
 	}
 }

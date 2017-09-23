@@ -4,6 +4,7 @@ import (
 	"fmt"
 	//"parser"
 	//"errors"
+	"bytes"
 )
 
 type test struct {
@@ -12,19 +13,30 @@ type test struct {
 }
 
 func main()  {
-	//parser.Parse()
-	//fmt.Println("111")
-	//test := make([]int, 0)
-	//test = append(test, 2)
+	var buffer bytes.Buffer //Buffer是一个实现了读写方法的可变大小的字节缓冲
 
-	//error := errors.New("1123321")
-	//errorMap := make(map[int]string, 0)
-	//fmt.Println(error)
-	v := "1234"
-	fmt.Println(v[0] == '1')
-	ss := test {
-		a:"1",
-		b:"2",
+	for {
+		if piece, ok := getNextString(); ok {
+			count++
+			/*
+			   func (b *Buffer) WriteString(s string) (n int, err error)
+			   Write将s的内容写入缓冲中，如必要会增加缓冲容量。返回值n为len(p)，err总是nil。如果缓冲变得太大，Write会采用错误值ErrTooLarge引发panic。
+			*/
+			buffer.WriteByte(piece)
+		} else {
+			break
+		}
 	}
-	fmt.Println(ss.a)
+
+	fmt.Println("拼接后的结果为-->", buffer.String())
+}
+var count int = 0
+var teststr[] byte = []byte{'1','2','3'}
+func getNextString()(byte, bool)  {
+	if count > 2{
+		return ',',false
+	} else {
+		return teststr[count], true
+	}
+
 }
