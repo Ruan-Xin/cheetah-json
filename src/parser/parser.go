@@ -23,16 +23,6 @@ var (
 	WrongSymbol					= errors.New("wrong symbol which can't resolve")
 )
 
-const (
-	NotExist
-	String
-	Number
-)
-
-func ()  {
-	
-}
-
 type node struct {
 	leaf bool
 	name string
@@ -56,8 +46,12 @@ func Parse(input string) error {
 	}
 	var buffer bytes.Buffer
 	var key string
+	if pos != '{' {
+		return WrongSymbol
+	}
+	pos = nextToken(input[pos:], pos)
 	for input[pos] != '}' {
-		pos++
+		pos = nextToken(input,pos)
 		if input[pos] == '"' {
 			buffer.WriteByte(input[pos])
 			for input[pos] != '"' {
@@ -67,11 +61,7 @@ func Parse(input string) error {
 		}
 		buffer.WriteByte(input[pos])
 		key = buffer.String()
-		pos++
 
-		for input[pos] != ' ' {
-			pos++
-		}
 		if input[pos] == ':' {
 			pos++
 		} else {
@@ -130,12 +120,17 @@ func objectResolve(input string) (int){
 	return 0
 }
 
-func next() error {
-	pos++
-	if pos >= length {
-		return OutOfBoundsError
+func nextToken(data string, pos int) int {
+	for i,c := range data{
+		switch c {
+		case ' ', '\n', '\r', '\t':
+			continue
+		default:
+			return i + pos
+		}
 	}
-	return nil
+
+	return -1
 }
 
 func typeNull()  {

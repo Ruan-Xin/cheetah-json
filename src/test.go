@@ -13,8 +13,12 @@ type test struct {
 
 func main()  {
 
-	fmt.Println('0')
-
+	a := "12342"
+	b := a[2:]
+	fmt.Println(a[2:])
+	for i,_ := range b{
+		fmt.Println(i + 2)
+	}
 	//var buffer bytes.Buffer //Buffer是一个实现了读写方法的可变大小的字节缓冲
 	//
 	//for {
