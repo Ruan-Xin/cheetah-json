@@ -56,12 +56,13 @@ func Parse(input string) error {
 			buffer.WriteByte(input[pos])
 			for input[pos] != '"' {
 				buffer.WriteByte(input[pos])
-				pos++
+				pos = nextToken(input[pos:], pos)
 			}
 		}
 		buffer.WriteByte(input[pos])
 		key = buffer.String()
 
+		pos = nextToken(input[pos:], pos)
 		if input[pos] == ':' {
 			pos++
 		} else {
@@ -107,8 +108,8 @@ func boolResolve(key string)  {
 func numResolve(key string)  {
 	
 }
-func stringResolve(key string)  {
-
+func stringResolve(key string, parent node)  {
+	parent.dataType =
 }
 func objectResolve(input string) (int){
 	for input[pos] != '}' {
@@ -131,9 +132,5 @@ func nextToken(data string, pos int) int {
 	}
 
 	return -1
-}
-
-func typeNull()  {
-
 }
 
