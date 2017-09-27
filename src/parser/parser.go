@@ -40,18 +40,17 @@ var pos = 0
 var length int
 
 func findKeyStart(data []byte, key string) (int ,error) {
-	for i, c := range data{
+	for i, _ := range data{
 		switch data[i] {
 		case '"':
 			i++
 			keyBegin := i
 
-			strEnd, keyEscaped := stringEnd(data[i:])
+			strEnd, _ := stringEnd(data[i:])
 			if strEnd == -1 {
 				break
 			}
 			i += strEnd
-			keyEnd := i - 1
 
 			valueOffset := nextToken(data[i:])
 			if valueOffset == -1 {
@@ -60,15 +59,13 @@ func findKeyStart(data []byte, key string) (int ,error) {
 
 			i += valueOffset
 
-			key := data[keyBegin:keyEnd]
-
 			if data[i] == ':' {
 				return keyBegin - 1,nil
 			}
 		}
 		i++
 	}
-	return -1, Ke
+	return -1, KeyPathNotFoundError
 }
 func Parse(data[] byte) error {
 	length = len(data)
@@ -147,9 +144,7 @@ func stringResolve(key string, parent node)  {
 }
 
 func keyResolve(data string)  {
-	if data[] {
 
-	}
 }
 func objectResolve(data string) (int){
 	for data[pos] != '}' {
