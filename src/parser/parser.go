@@ -70,11 +70,11 @@ func findKeyStart(data []byte, key string) (int ,error) {
 func Parse(data[] byte) error {
 	length = len(data)
 
-	root := node {
-		name:"root",
-		leaf:false,
-		root:true,
-	}
+	//root := node {
+	//	name:"root",
+	//	leaf:false,
+	//	root:true,
+	//}
 	var buffer bytes.Buffer
 	var key string
 	if pos != '{' {
@@ -125,7 +125,7 @@ func Parse(data[] byte) error {
 }
 
 func nilResolve(key string)  {
-	
+
 }
 
 func arrayResolve(key string)  {
