@@ -81,7 +81,7 @@ func Parse(data[] byte) error {
 		return WrongSymbol
 	}
 
-	
+
 	pos = nextToken(data[pos:])
 	for data[pos] != '}' {
 		pos = nextToken(data)
@@ -109,7 +109,7 @@ func Parse(data[] byte) error {
 		if data[pos] == 'n' {
 			nilResolve(key)
 		} else if data[pos] == '"' {
-			stringResolve(key)
+			//stringResolve(key)
 		} else if data[pos] == '{' {
 			objectResolve(key)
 		} else if data[pos] == '[' {
