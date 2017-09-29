@@ -80,6 +80,8 @@ func Parse(data[] byte) error {
 	if pos != '{' {
 		return WrongSymbol
 	}
+
+	
 	pos = nextToken(data[pos:])
 	for data[pos] != '}' {
 		pos = nextToken(data)
